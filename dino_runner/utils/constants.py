@@ -44,6 +44,16 @@ DUCKING_HAMMER = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
 ]
+RUNNING_FLASH = [
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Flash.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2Flash.png")),
+]
+JUMPING_FLASH = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpFlash.png"))
+DUCKING_FLASH = [
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Flash.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2Flash.png")),
+]
+
 
 SMALL_CACTUS = [
     pygame.image.load(os.path.join(IMG_DIR, "Cactus/SmallCactus1.png")),
@@ -68,5 +78,6 @@ HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
+
 
 DEFAULT_TYPE = "default"
