@@ -8,6 +8,7 @@ SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
+
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
 
@@ -44,6 +45,15 @@ DUCKING_HAMMER = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1Hammer.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2.png")),
 ]
+RUNNING_FLASH_SHIELD = [
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1FlashShield.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2FlashShield.png")),
+]
+JUMPING_FLASH_SHIELD = pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoJumpFlashShield.png"))
+DUCKING_FLASH_SHIELD = [
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck1FlashShield.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoDuck2FlashShield.png")),
+]
 RUNNING_FLASH = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun1Flash.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/DinoRun2Flash.png")),
@@ -75,7 +85,9 @@ GOKU = [
     pygame.image.load(os.path.join(IMG_DIR, "Goku/Goku2.png")),
 ]
 
-CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
+CLOUD = [ pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png')),
+         pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud1.png'))]
+
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
@@ -83,12 +95,34 @@ BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
+RESET = pygame.image.load(os.path.join(IMG_DIR, 'Other/Reset.png'))
+GAME_OVER = pygame.image.load(os.path.join(IMG_DIR, 'Other/GameOver.png'))
+
+BG2 = pygame.image.load(os.path.join(IMG_DIR, 'Other/1476.png'))
+SMALL_HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
 
-FONT_STYLE = "freesansbold.ttf"
+SHIELD_TYPE = "shield"
+
+FONT_STYLE = 'Comic Sans MS'
+
 COLORS = {
         'Black':(0,0,0),
         'white': (255, 255, 255)
-
 }
+
+BACKGROUND_MUSIC= os.path.join(IMG_DIR, 'Music/background_music.mp3')
+MENU_MUSIC = os.path.join(IMG_DIR, 'Music/menu_music.mp3')
+
+BOTTOM = [pygame.image.load(os.path.join(IMG_DIR, 'Other/R2.png')),
+          pygame.image.load(os.path.join(IMG_DIR, 'Other/R3.png')),
+          
+         pygame.image.load(os.path.join(IMG_DIR, 'Other/R_1.png'))
+          ]
+
+BIRD1 = [
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/bird1.1.png")),
+    pygame.image.load(os.path.join(IMG_DIR, "Bird/bird1.2.png")),
+]
+
