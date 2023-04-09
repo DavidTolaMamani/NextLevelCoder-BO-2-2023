@@ -23,3 +23,4 @@ class Lives(Sprite):
     
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+        screen.blit(self.image,(30,630))

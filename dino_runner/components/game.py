@@ -14,7 +14,8 @@ from dino_runner.utils.constants import (BG,
                                                BG2, 
                                                BOTTOM,
                                                BACKGROUND_MUSIC,
-                                               MENU_MUSIC
+                                               MENU_MUSIC,
+                                               HEART
                                             )
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
@@ -42,21 +43,23 @@ class Game:
         self.death_count = 0
         self.powerup_manager = PowerUpManager()
         self.lives_manager = LivesManager()
-        self.lives_count = 1
- 
-    
+        self.live = False
+   
     def execute(self):
-        while self.game_running:
-            pygame.mixer.music.load(MENU_MUSIC)  
+        while self.game_running: 
+            pygame.mixer.music.load(BACKGROUND_MUSIC)  
             pygame.mixer.music.set_volume(0.1)
-            pygame.mixer.music.play(-1)
+            pygame.mixer.music.play(-1)    
             if not self.playing:
                 self.show_menu()
+                      
                 
     def run(self):
+      
         # Game loop: events - update - draw
         self.obstacle_manager.reset_obstacles()
         self.powerup_manager.reset_power_ups(self.points)
+        self.lives_count = 1
         self.playing = True
         while self.playing:
             self.events()
@@ -64,6 +67,7 @@ class Game:
             self.draw()
      
     def events(self):
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
@@ -76,6 +80,7 @@ class Game:
         self.lives_manager.update(self)
 
     def draw(self):
+        
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))
         self.draw_back()
@@ -85,14 +90,22 @@ class Game:
         self.obstacle_manager.draw(self.screen)
         self.powerup_manager.draw(self.screen)
         self.lives_manager.draw(self.screen)
+        self.draw_lives()
         self.score()
-      
         pygame.display.update()
      #   pygame.display.flip()
 
+    def draw_lives(self):
+        if self.lives_count >= 1:
+            pos_x = 30  # Se debe inicializar la posición x antes de usarla
+            for live_count in range(self.lives_count):
+                self.screen.blit(HEART, (pos_x, 540))  
+                pos_x += 60 
+        else:
+            self.live = False
+
     def draw_background(self):
         image_width = BOTTOM[1].get_width()
-
         self.screen.blit(BOTTOM[1], (self.x_pos_bg, self.y_pos_bg))
         self.screen.blit(BOTTOM[1], (image_width + self.x_pos_bg, self.y_pos_bg))
         if self.x_pos_bg <= -image_width:
@@ -102,7 +115,6 @@ class Game:
 
     def draw_back(self):
         image_width = BOTTOM[1].get_width()
-
         self.screen.blit(BOTTOM[0], (self.x_pos_bg, 0))
         self.screen.blit(BOTTOM[0], (image_width + self.x_pos_bg, 0))
         if self.x_pos_bg <= -image_width:
@@ -119,32 +131,31 @@ class Game:
         self.x_pos_cloud -= self.game_speed 
         self.screen.blit(CLOUD[type_cloud], (self.x_pos_cloud, self.y_pos_cloud))
         
-
     def score(self):
         self.points +=1
         text, text_rect = self.text_utils.get_score_element(self.points)
         self.screen.blit(text, text_rect)
         self.player.check_invincibility(self.screen, self.text_utils)
 
-    def show_menu(self):
+    def show_menu(self):    
+        
         self.game_running = True
         self.screen.fill(COLORS['white'])
         self.print_menu_elements()
         self.obstacle_manager.reset_obstacles()
         pygame.display.update()
         self.handle_key_event_on_menu()
+        
 
     def print_menu_elements(self):
         half_screen_height = SCREEN_HEIGHT //2
         half_screen_width = SCREEN_WIDTH //2
-
+  
         if self.death_count == 0:
             self.screen.blit(BG2,(0,0))
             text, text_rect = self.text_utils.get_centered_message('Press Any key to start')
             self.screen.blit(text, text_rect)
-            pygame.mixer.music.load(BACKGROUND_MUSIC)
-            pygame.mixer.music.set_volume(0.1)
-            pygame.mixer.music.play(-1)
+            
 
         elif self.death_count > 0:
             score, score_rect = self.text_utils.get_centered_message('Your Score: ' + str(self.points), height= half_screen_height +50)
@@ -154,11 +165,9 @@ class Game:
             self.screen.blit(GAME_OVER,(360, 60))
             self.screen.blit(score, score_rect)
             self.screen.blit(death, death_rect)
-
         self.screen.blit(RUNNING_FLASH[0], (half_screen_width - 30, half_screen_height -160))
- 
+        
     def handle_key_event_on_menu(self):
-       
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.game_running = False
@@ -168,9 +177,12 @@ class Game:
                 exit()
             if event.type == pygame.KEYDOWN:
                 self.run()
+               
 
+      
 
-       
+ 
+
 
 
 

@@ -91,6 +91,7 @@ class Dinosaur(Sprite):
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+        
 
     def check_invincibility(self, screen, text_utils):
         if self.shield:
